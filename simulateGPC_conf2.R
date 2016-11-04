@@ -72,7 +72,7 @@ for (npi in c(100)) {
 		# Xstar_train <- matrix(Xstar_train, length(c(Xstar_train)), 1)
     
     #Loading the data
-    dataset <-(read.table(paste("/Volumes/LocalDataHD/j/jt/jt306/Documents/CVPR2016_Rcode/saved_datasets/tech",datasetnum,"data",sep = "")))
+    dataset <-(read.table(paste("../saved_datasets/tech",datasetnum,"data",sep = "")))
     dims=dim(dataset)
     dataset <-as.numeric(unlist(dataset))
     print('dim of dataset')
@@ -81,10 +81,11 @@ for (npi in c(100)) {
     dataset<-matrix(dataset,dims[1],dims[2])
     typeof(dataset)
     dim(dataset)
-    train_indices <- as.integer(read.table(paste('/home/j/jt/jt306/Documents/CVPR2016_Rcode/saved_indices/top',number_selected,'tech',datasetnum,fold,seed,'train_instances_indices', sep='-'))[[1]])+1
-    test_indices <- as.integer(read.table(paste('/home/j/jt/jt306/Documents/CVPR2016_Rcode/saved_indices/top',number_selected,'tech',datasetnum,fold,seed,'test_instances_indices', sep='-'))[[1]])+1
-    selected_indices <- as.integer(read.table(paste('/home/j/jt/jt306/Documents/CVPR2016_Rcode/saved_indices/top',number_selected,'tech',datasetnum,fold,seed,'selected_feat_indices', sep='-'))[[1]])+1
-    priv_indices <- as.integer(read.table(paste('/home/j/jt/jt306/Documents/CVPR2016_Rcode/saved_indices/top',number_selected,'tech',datasetnum,fold,seed,'unselected_feat_indices', sep='-'))[[1]])+1
+    # /home/j/jt/jt306/Documents/CVPR2016_Rcode/
+    train_indices <- as.integer(read.table(paste('../saved_indices/top',number_selected,'tech',datasetnum,fold,seed,'train_instances_indices', sep='-'))[[1]])+1
+    test_indices <- as.integer(read.table(paste('../saved_indices/top',number_selected,'tech',datasetnum,fold,seed,'test_instances_indices', sep='-'))[[1]])+1
+    selected_indices <- as.integer(read.table(paste('../saved_indices/top',number_selected,'tech',datasetnum,fold,seed,'selected_feat_indices', sep='-'))[[1]])+1
+    priv_indices <- as.integer(read.table(paste('../saved_indices/top',number_selected,'tech',datasetnum,fold,seed,'unselected_feat_indices', sep='-'))[[1]])+1
     
     Xtrain <- dataset[train_indices,selected_indices]
     Xtest <- dataset[test_indices,selected_indices]
@@ -93,7 +94,7 @@ for (npi in c(100)) {
     print('dim of train priv')
     print(dim(Xstar_train))
 
-    labels <-(as.double(unlist(read.table(paste('/Volumes/LocalDataHD/j/jt/jt306/Documents/CVPR2016_Rcode/saved_datasets/tech',datasetnum,'labels', sep='')))))
+    labels <-(as.double(unlist(read.table(paste('../saved_datasets/tech',datasetnum,'labels', sep='')))))
     Ytrain <- labels[train_indices]
     Ytest <- labels[test_indices]
     dim(Ytrain)
@@ -126,13 +127,10 @@ for (npi in c(100)) {
 		# 	row.names = F, col.names = F, append = FALSE)
 
 
-		write.table(errorTest, file = paste("/home/j/jt/jt306/Documents/CVPR2016_Rcode/joe_results/GPC_conf/error" ,npi,number_selected,'tech',datasetnum,fold,seed,".txt",sep = "-"), row.names = F, col.names = F, append = FALSE)
+		write.table(errorTest, file = paste("../joe_results/GPC_conf/error" ,npi,number_selected,'tech',datasetnum,fold,seed,".txt",sep = "-"), row.names = F, col.names = F, append = FALSE)
 		
-		write.table(t(time), file = paste("/home/j/jt/jt306/Documents/CVPR2016_Rcode/joe_results/SVM/time",npi,number_selected,'tech',datasetnum,fold,seed,".txt",sep = "-"), row.names = F, col.names = F, append = FALSE)
-		
-		
-		
-		
+		write.table(t(time), file = paste("../joe_results/SVM/time",npi,number_selected,'tech',datasetnum,fold,seed,".txt",sep = "-"), row.names = F, col.names = F, append = FALSE)
+	
 		# We plot the values of the G function (Only works for uni-dimensional privileged data)
 		#pdf(paste("./results/GPC_conf/",i,"_plot_g_function_", npi, ".pdf", sep = ""), width = 9, height = 6)
 		#plot_function_g(ret, Xstar_train)
