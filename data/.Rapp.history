@@ -1,0 +1,3 @@
+load("/Volumes/LocalDataHD/j/jt/jt306/Documents/CVPR2016_Rcode/data/1data.dat")
+print("/Volumes/LocalDataHD/j/jt/jt306/Documents/CVPR2016_Rcode/data/1data.dat")
+print(load("/Volumes/LocalDataHD/j/jt/jt306/Documents/CVPR2016_Rcode/data/1data.dat"))
