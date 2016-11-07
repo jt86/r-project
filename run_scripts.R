@@ -8,6 +8,7 @@
 # source("practice.R")
 
 # source("simulateGPC.R")
+print (commandArgs())
 source("simulateGPC_conf2.R", echo=TRUE)
 # source("simulateGPC_plus2.R")
 # source("simulateSVM2.R", echo=TRUE)
