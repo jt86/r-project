@@ -82,10 +82,10 @@ for (npi in c(100)) {
     typeof(dataset)
     dim(dataset)
     # /home/j/jt/jt306/Documents/CVPR2016_Rcode/
-    train_indices <- as.integer(read.table(paste('../saved_indices/top',number_selected,'tech',datasetnum,fold,seed,'train_instances_indices', sep='-'))[[1]])+1
-    test_indices <- as.integer(read.table(paste('../saved_indices/top',number_selected,'tech',datasetnum,fold,seed,'test_instances_indices', sep='-'))[[1]])+1
-    selected_indices <- as.integer(read.table(paste('../saved_indices/top',number_selected,'tech',datasetnum,fold,seed,'selected_feat_indices', sep='-'))[[1]])+1
-    priv_indices <- as.integer(read.table(paste('../saved_indices/top',number_selected,'tech',datasetnum,fold,seed,'unselected_feat_indices', sep='-'))[[1]])+1
+    train_indices <- as.integer(read.table(paste('../saved_indices/top',number_selected,'-tech',datasetnum,'-',fold,'-',seed,'-train_instances_indices', sep=''))[[1]])+1
+    test_indices <- as.integer(read.table(paste('../saved_indices/top',number_selected,'-tech',datasetnum,'-',fold,'-',seed,'-test_instances_indices', sep=''))[[1]])+1
+    selected_indices <- as.integer(read.table(paste('../saved_indices/top',number_selected,'-tech',datasetnum,'-',fold,'-',seed,'-selected_feat_indices', sep=''))[[1]])+1
+    priv_indices <- as.integer(read.table(paste('../saved_indices/top',number_selected,'-tech',datasetnum,'-',fold,'-',seed,'-unselected_feat_indices', sep=''))[[1]])+1
     
     Xtrain <- dataset[train_indices,selected_indices]
     Xtest <- dataset[test_indices,selected_indices]
