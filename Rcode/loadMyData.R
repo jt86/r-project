@@ -3,20 +3,27 @@ load("/Volumes/LocalDataHD/j/jt/jt306/Documents/CVPR2016_Rcode/data/1data.dat")
 print((data$itrain))
 
 dataset <- (read.table("/Volumes/LocalDataHD/j/jt/jt306/Documents/CVPR2016_Rcode/saved_datasets/tech39data"))
-labels <- as.integer(read.table("/Volumes/LocalDataHD/j/jt/jt306/Documents/CVPR2016_Rcode/saved_datasets/tech39labels"))
+labels <-(as.double(unlist(read.table("/Volumes/LocalDataHD/j/jt/jt306/Documents/CVPR2016_Rcode/saved_datasets/tech39labels"))))
+dim(labels)
+Ytrain <- labels[train_indices]
+Ytest <- labels[test_indices]
+dim(Ytrain)
+length(Ytrain)
+length(Ytest)
+
 labels
 dim(dataset)
 train_indices <- as.integer(read.table('/home/j/jt/jt306/Documents/CVPR2016_Rcode/saved_indices/top500-tech39-3-4-train_instances_indices')[[1]])+1
 test_indices <- as.integer(read.table('/home/j/jt/jt306/Documents/CVPR2016_Rcode/saved_indices/top500-tech39-3-4-test_instances_indices')[[1]])+1
 selected_indices <- as.integer(read.table('/home/j/jt/jt306/Documents/CVPR2016_Rcode/saved_indices/top500-tech39-3-4-selected_feat_indices')[[1]])+1
 priv_indices <- as.integer(read.table('/home/j/jt/jt306/Documents/CVPR2016_Rcode/saved_indices/top500-tech39-3-4-unselected_feat_indices')[[1]])+1
-
-
+ 
 
 dims <- dim(dataset)
 dataset =matrix(dataset,dims[1],dims[2])
 dim(dataset)
 typeof(dataset)
+dims
 
 dataset[1,1:130]
 

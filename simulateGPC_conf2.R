@@ -6,10 +6,10 @@ i <- 1
 # i <- commandArgs()[1]
 
 
-number_selected <- commandArgs()[2]
-datasetnum <- commandArgs()[3]
-fold <- commandArgs()[4]
-seed <- commandArgs()[5]
+number_selected <- commandArgs()[7]
+datasetnum <- commandArgs()[8]
+seed <- commandArgs()[9]
+fold <- commandArgs()[10]
 print(number_selected)
 print(datasetnum)
 print(fold)
@@ -127,9 +127,9 @@ for (npi in c(100)) {
 		# 	row.names = F, col.names = F, append = FALSE)
 
 
-		write.table(errorTest, file = paste("../joe_results/GPC_conf/error" ,npi,number_selected,'tech',datasetnum,fold,seed,".txt",sep = "-"), row.names = F, col.names = F, append = FALSE)
+		write.table(errorTest, file = paste("../results/GPC_conf/error" ,npi,number_selected,'tech',datasetnum,fold,seed,".txt",sep = "-"), row.names = F, col.names = F, append = FALSE)
 		
-		write.table(t(time), file = paste("../joe_results/SVM/time",npi,number_selected,'tech',datasetnum,fold,seed,".txt",sep = "-"), row.names = F, col.names = F, append = FALSE)
+		write.table(t(time), file = paste("../results/SVM/time",npi,number_selected,'tech',datasetnum,fold,seed,".txt",sep = "-"), row.names = F, col.names = F, append = FALSE)
 	
 		# We plot the values of the G function (Only works for uni-dimensional privileged data)
 		#pdf(paste("./results/GPC_conf/",i,"_plot_g_function_", npi, ".pdf", sep = ""), width = 9, height = 6)
