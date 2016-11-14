@@ -6,10 +6,10 @@ i <- 1
 # i <- commandArgs()[1]
 
 
-number_selected <- commandArgs()[7]
-datasetnum <- commandArgs()[8]
-seed <- commandArgs()[9]
-fold <- commandArgs()[10]
+number_selected <- commandArgs()[6]
+datasetnum <- commandArgs()[7]
+seed <- commandArgs()[8]
+fold <- commandArgs()[9]
 print(number_selected)
 print(datasetnum)
 print(fold)
