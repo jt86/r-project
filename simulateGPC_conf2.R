@@ -129,7 +129,7 @@ for (npi in c(100)) {
 
 		write.table(errorTest, file = paste("../results/GPC_conf/error" ,npi,number_selected,'tech',datasetnum,fold,seed,".txt",sep = "-"), row.names = F, col.names = F, append = FALSE)
 		
-		write.table(t(time), file = paste("../results/SVM/time",npi,number_selected,'tech',datasetnum,fold,seed,".txt",sep = "-"), row.names = F, col.names = F, append = FALSE)
+		# write.table(t(time), file = paste("../results/SVM/time",npi,number_selected,'tech',datasetnum,fold,seed,".txt",sep = "-"), row.names = F, col.names = F, append = FALSE)
 	
 		# We plot the values of the G function (Only works for uni-dimensional privileged data)
 		#pdf(paste("./results/GPC_conf/",i,"_plot_g_function_", npi, ".pdf", sep = ""), width = 9, height = 6)
