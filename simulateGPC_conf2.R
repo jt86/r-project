@@ -126,7 +126,7 @@ for (npi in c(100)) {
 		# write.table(t(time), file = paste("./results/GPC_conf/",i,"_time_X_", npi, ".txt", sep = ""), 
 		# 	row.names = F, col.names = F, append = FALSE)
 
-
+    print(errorTest)
 		write.table(errorTest, file = paste("../results/GPC_conf/error" ,npi,number_selected,'tech',datasetnum,fold,seed,".txt",sep = "-"), row.names = F, col.names = F, append = FALSE)
 		
 		# write.table(t(time), file = paste("../results/SVM/time",npi,number_selected,'tech',datasetnum,fold,seed,".txt",sep = "-"), row.names = F, col.names = F, append = FALSE)
