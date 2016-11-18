@@ -4,6 +4,16 @@ set.seed(0)
 
 i <- commandArgs()[1]
 
+number_selected <- commandArgs()[6]
+datasetnum <- commandArgs()[7]
+seed <- commandArgs()[8]
+fold <- commandArgs()[9]
+print(number_selected)
+print(datasetnum)
+print(fold)
+print(seed)
+
+
 #number of pseudo-inputs is set to 100
 for (npi in c(100)) {
 	
