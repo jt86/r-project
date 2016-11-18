@@ -10,11 +10,28 @@ for (npi in c(100)) {
 		print(i)
 
 		#Loading the data
-		load(paste("./data/",i,"data.dat",sep = ""))
-		Xtrain <- data$x[ data$itrain, ]
-		Ytrain <- as.vector(c(data$y_train))
-		Xtest <- data$x[ data$itest, ]
-		Ytest <- as.vector(c(data$y_test))
+		# load(paste("./data/",i,"data.dat",sep = ""))
+		# Xtrain <- data$x[ data$itrain, ]
+		# Ytrain <- as.vector(c(data$y_train))
+		# Xtest <- data$x[ data$itest, ]
+		# Ytest <- as.vector(c(data$y_test))
+    
+    #Loading the data
+    dataset <-(read.table(paste("../saved_datasets/tech",datasetnum,"data",sep = "")))
+    dims=dim(dataset)
+    dataset <-as.numeric(unlist(dataset))
+    dataset<-matrix(dataset,dims[1],dims[2])
+    train_indices <- as.integer(read.table(paste('../saved_indices/top',number_selected,'-tech',datasetnum,'-',fold,'-',seed,'-train_instances_indices', sep=''))[[1]])+1
+    test_indices <- as.integer(read.table(paste('../saved_indices/top',number_selected,'-tech',datasetnum,'-',fold,'-',seed,'-test_instances_indices', sep=''))[[1]])+1
+    selected_indices <- as.integer(read.table(paste('../saved_indices/top',number_selected,'-tech',datasetnum,'-',fold,'-',seed,'-selected_feat_indices', sep=''))[[1]])+1
+    priv_indices <- as.integer(read.table(paste('../saved_indices/top',number_selected,'-tech',datasetnum,'-',fold,'-',seed,'-unselected_feat_indices', sep=''))[[1]])+1
+    Xtrain <- dataset[train_indices,selected_indices]
+    Xtest <- dataset[test_indices,selected_indices]
+  
+    labels <-(as.double(unlist(read.table(paste('../saved_datasets/tech',datasetnum,'labels', sep='')))))
+    Ytrain <- labels[train_indices]
+    Ytest <- labels[test_indices]
+
 	
 		#zero mean unit variance normalization
 		meanTrain <- apply(Xtrain, 2, mean)
@@ -29,13 +46,18 @@ for (npi in c(100)) {
 		time <- system.time(
 		ret <- epGPCExternal(Xtrain, Ytrain, npi, l = 5e-2, sigma0 = 1, optimize_flags = c(TRUE, TRUE, TRUE, TRUE))
 		)
+		
+		
 	
 		errorTest <- mean(sign(predictGPC(ret, Xtest) - 0.5) != Ytest)
-
-		write.table(errorTest, file = paste("./results/GPC/",i,"_errorTest_X_", npi, ".txt", sep = ""),
-			row.names = F, col.names = F, append = FALSE)
-		write.table(t(time), file = paste("./results/GPC/",i,"_time_X_", npi, ".txt", sep = ""),
-			row.names = F, col.names = F, append = FALSE)
+		
+		print(errorTest)
+		write.table(errorTest, file = paste("../results/GPC_selected/error" ,npi,number_selected,'tech',datasetnum,fold,seed,".txt",sep = "-"), row.names = F, col.names = F, append = FALSE)
+		
+		# write.table(errorTest, file = paste("./results/GPC/",i,"_errorTest_X_", npi, ".txt", sep = ""),
+		# 	row.names = F, col.names = F, append = FALSE)
+		# write.table(t(time), file = paste("./results/GPC/",i,"_time_X_", npi, ".txt", sep = ""),
+		# 	row.names = F, col.names = F, append = FALSE)
 
 }
 
